@@ -169,6 +169,9 @@ namespace Rg.Plugins.Popup.Droid.Impl
             if (nativeView == null)
                 return Task.FromResult(true);
 
+            if (nativeView == DecoreView && nativeView.Visibility != ViewStates.Visible)
+                return Task.FromResult(true);
+
             var tcs = new TaskCompletionSource<bool>();
 
             nativeView.Post(() => tcs.SetResult(true));
